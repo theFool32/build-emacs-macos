@@ -18,7 +18,7 @@
 
 ROOT_DIR="`pwd`"
 BUILD_DIR=/tmp/emacs-build
-SRC_DIR=emacs-git
+SRC_DIR=emacs
 GIT_VERSION=emacs-git-version.el
 SITELISP=/Applications/Emacs.app/Contents/Resources/site-lisp
 BREW=$(brew --prefix)

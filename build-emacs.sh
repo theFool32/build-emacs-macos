@@ -18,7 +18,7 @@
 
 ROOT_DIR="`pwd`"
 BUILD_DIR=/tmp/emacs-build
-SRC_DIR=emacs
+SRC_DIR=emacs-git
 GIT_VERSION=emacs-git-version.el
 SITELISP=/Applications/Emacs.app/Contents/Resources/site-lisp
 BREW=$(brew --prefix)
@@ -156,6 +156,7 @@ echo "
     --with-ns \
     --with-native-compilation \
     --with-xwidgets \
+    --with-modules \
     --with-mailutils \
     --with-json \
     --without-dbus \
@@ -242,7 +243,7 @@ echo "
 "
 
 # Copy C source files to Emacs
-cp -r ${ROOT_DIR}/${SRC_DIR}/src /Applications/Emacs.app/Contents/Resources/
+cp -r ${SRC_DIR}/src /Applications/Emacs.app/Contents/Resources/
 
 echo "DONE!"
 
@@ -254,10 +255,10 @@ echo "
 
 # Make a directory for the build's log files and move them there
 # Note that this removes a previous identical dir if making multiple similar builds
-rm -rf ${ROOT_DIR}/build-logs/${DESCR}; mkdir ${ROOT_DIR}/build-logs/${DESCR}
-mv ${BUILD_DIR}/config.log ${ROOT_DIR}/build-logs/${DESCR}/${DESCR}-config.log
-mv ${BUILD_DIR}/build-log.txt ${ROOT_DIR}/build-logs/${DESCR}/${DESCR}-build-log.txt
-mv ${BUILD_DIR}/bootstrap-log.txt ${ROOT_DIR}/build-logs/${DESCR}/${DESCR}-bootstrap-log.txt
+rm -rf ${ROOT_DIR}/build-logs/${DESCR}; mkdir ${ROOT_DIR}/build-logs/
+mv ${BUILD_DIR}/config.log ${ROOT_DIR}/build-logs/config-${DESCR}.log
+mv ${BUILD_DIR}/build-log.txt ${ROOT_DIR}/build-logs/build-log-${DESCR}.txt
+mv ${BUILD_DIR}/bootstrap-log.txt ${ROOT_DIR}/build-logs/bootstrap-log-${DESCR}.txt
 
 echo "DONE!"
 

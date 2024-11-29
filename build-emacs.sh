@@ -37,9 +37,9 @@ else
     echo "Homebrew installed!"
 fi
 
-export LDFLAGS="-L${BREW}/opt/libxml2/lib -L${BREW}/opt/giflib/lib -L${BREW}/opt/webp/lib -L${BREW}/opt/jpeg/lib -L${BREW}/opt/libtiff/lib"
+export LDFLAGS="-L${BREW}/opt/libxml2/lib -L${BREW}/opt/giflib/lib -L${BREW}/opt/webp/lib -L${BREW}/opt/jpeg/lib -L${BREW}/opt/libtiff/lib -L${BREW}/opt/libmps/lib"
 
-export CPPFLAGS="-I${BREW}/opt/libxml2/include -I${BREW}/opt/jpeg/include -I${BREW}/opt/libtiff/include -I${BREW}/opt/giflib/include"
+export CPPFLAGS="-I${BREW}/opt/libxml2/include -I${BREW}/opt/jpeg/include -I${BREW}/opt/libtiff/include -I${BREW}/opt/giflib/include -I${BREW}/opt/libmps/include"
 
 echo "
 # ======================================================
@@ -67,8 +67,10 @@ cd ${SRC_DIR}
 if test -n "$1"; then
     commit="$1"
 else
-    commit="origin/master"
-    git checkout master
+    #commit="origin/master"
+    #git checkout master
+    commit="origin/scratch/igc"
+    git checkout scratch/igc
     git pull
 fi
 
@@ -153,13 +155,12 @@ echo "
 # installed ctags; see and don't compress info files, etc
 # https://www.topbug.net/blog/2016/11/10/installing-emacs-from-source-avoid-the-conflict-of-ctags/
 ./configure \
+    --with-mps=yes \
     --with-ns \
     --with-native-compilation \
-    --with-xwidgets \
     --with-modules \
     --with-mailutils \
-    --with-json \
-    --without-dbus \
+    --with-dbus \
     --without-compress-install \
     --program-transform-name='s/^ctags$/emctags/' \
 
